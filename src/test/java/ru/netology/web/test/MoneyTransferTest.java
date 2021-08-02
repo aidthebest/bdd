@@ -57,15 +57,15 @@ class MoneyTransferTest {
         assertEquals(secondCardStartBalance + transferAmount, DashboardPage.getCardBalance(1));
     }
 
-    @Test
-    void shouldTransferMoneyBetweenOwnCardsV6() {
-        int firstCardStartBalance = DashboardPage.getCardBalance(0);
-        int secondCardStartBalance = DashboardPage.getCardBalance(1);
-        int transferAmount = -4800;
-        DashboardPage.changeSecondCardBalanse(Integer.toString(transferAmount));
-        assertEquals(firstCardStartBalance - transferAmount, DashboardPage.getCardBalance(0));
-        assertEquals(secondCardStartBalance + transferAmount, DashboardPage.getCardBalance(1));
-    }
+//    @Test
+//    void shouldTransferMoneyBetweenOwnCardsV6() {
+//        int firstCardStartBalance = DashboardPage.getCardBalance(0);
+//        int secondCardStartBalance = DashboardPage.getCardBalance(1);
+//        int transferAmount = -4800;
+//        DashboardPage.changeSecondCardBalanse(Integer.toString(transferAmount));
+//        assertEquals(firstCardStartBalance - transferAmount, DashboardPage.getCardBalance(0));
+//        assertEquals(secondCardStartBalance + transferAmount, DashboardPage.getCardBalance(1));
+//    }
 
     @Test
     void shouldTransferMoneyBetweenOwnCardsV7() {

@@ -32,16 +32,16 @@ public class DashboardPage {
     }
 
     public static void changeFirstCardBalanse(String amount) {
-        $("[class=button__content]").click();
-        $("[class=input__control]").setValue(amount);
+        $("[data-test-id=\"action-deposit\"]").click();
+        $("[data-test-id=amount] input").setValue(amount);
         $("[data-test-id=from] input").setValue("5559 0000 0000 0002");
-        $("[class=button__text]").click();
+        $("[data-test-id=\"action-transfer\"").click();
     }
 
     public static void changeSecondCardBalanse(String amount) {
-        $$("[class=button__content]").get(1).click();
-        $("[class=input__control]").setValue(amount);
+        $$("[data-test-id=\"action-deposit\"]").get(1).click();
+        $("[data-test-id=amount] input").setValue(amount);
         $("[data-test-id=from] input").setValue("5559 0000 0000 0001");
-        $("[class=button__text]").click();
+        $("[data-test-id=\"action-transfer\"]").click();
     }
 }
