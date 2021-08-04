@@ -2,23 +2,25 @@ package ru.netology.web.page;
 
 import ru.netology.web.data.DataHelper;
 
+//import lombok.Value;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class TransferPage {
-    public static void changeFirstCardBalanse(String amount, DataHelper.CardsNumber info) {
+    public static DashboardPage changeFirstCardBalanse(String amount, String cardsNumber) {
         $("[data-test-id=\"action-deposit\"]").click();
         $("[data-test-id=amount] input").setValue(amount);
-        $("[data-test-id=from] input").setValue(info.getSecond());
+        $("[data-test-id=from] input").setValue(cardsNumber);
         $("[data-test-id=\"action-transfer\"").click();
-        new DashboardPage();
+        return new DashboardPage();
     }
 
-    public static void changeSecondCardBalanse(String amount, DataHelper.CardsNumber info) {
+    public static DashboardPage changeSecondCardBalanse(String amount, String cardsNumber) {
         $$("[data-test-id=\"action-deposit\"]").get(1).click();
         $("[data-test-id=amount] input").setValue(amount);
-        $("[data-test-id=from] input").setValue(info.getFirst());
+        $("[data-test-id=from] input").setValue(cardsNumber);
         $("[data-test-id=\"action-transfer\"]").click();
-        new DashboardPage();
+        return new DashboardPage();
     }
 }
