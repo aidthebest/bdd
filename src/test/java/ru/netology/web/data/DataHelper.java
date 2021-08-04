@@ -46,14 +46,4 @@ public class DataHelper {
         val value = text.substring(start + balanceStart.length(), finish);
         return Integer.parseInt(value);
     }
-
-//    @Value
-//    public static class CardsNumber {
-//        private String first;
-//        private String second;
-//    }
-//
-//    public CardsNumber getCardsInfo() {
-//        return new CardsNumber("5559 0000 0000 0001", "5559 0000 0000 0002");
-//    }
 }

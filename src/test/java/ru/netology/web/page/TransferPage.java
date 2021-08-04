@@ -1,9 +1,5 @@
 package ru.netology.web.page;
 
-import ru.netology.web.data.DataHelper;
-
-//import lombok.Value;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
