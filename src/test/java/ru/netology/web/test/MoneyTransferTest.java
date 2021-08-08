@@ -3,6 +3,7 @@ package ru.netology.web.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
+import ru.netology.web.page.CardsPage;
 import ru.netology.web.page.LoginPageV1;
 import ru.netology.web.page.TransferPage;
 
@@ -34,31 +35,40 @@ class MoneyTransferTest {
 
     @Test
     void shouldTransferMoneyBetweenOwnCardsV4() {
-        int firstCardStartBalance = DataHelper.getCardBalance(0);
-        int secondCardStartBalance = DataHelper.getCardBalance(1);
+        CardsPage cp = new CardsPage();
+        int firstCardStartBalance = cp.getCardBalance(0);
+        int secondCardStartBalance = cp.getCardBalance(1);
+        cp.firstCardUp();
         int transferAmount = 394;
-        TransferPage.changeFirstCardBalanse(Integer.toString(transferAmount), "5559 0000 0000 0002");
-        assertEquals(firstCardStartBalance + transferAmount, DataHelper.getCardBalance(0));
-        assertEquals(secondCardStartBalance - transferAmount, DataHelper.getCardBalance(1));
+        TransferPage tp = new TransferPage();
+        tp.changeFirstCardBalanse(Integer.toString(transferAmount), "5559 0000 0000 0002");
+        assertEquals(firstCardStartBalance + transferAmount, cp.getCardBalance(0));
+        assertEquals(secondCardStartBalance - transferAmount, cp.getCardBalance(1));
     }
 
     @Test
     void shouldTransferMoneyBetweenOwnCardsV5() {
-        int firstCardStartBalance = DataHelper.getCardBalance(0);
-        int secondCardStartBalance = DataHelper.getCardBalance(1);
+        CardsPage cp = new CardsPage();
+        int firstCardStartBalance = cp.getCardBalance(0);
+        int secondCardStartBalance = cp.getCardBalance(1);
+        cp.secondCardUp();
         int transferAmount = 748;
-        TransferPage.changeSecondCardBalanse(Integer.toString(transferAmount), "5559 0000 0000 0001");
-        assertEquals(firstCardStartBalance - transferAmount, DataHelper.getCardBalance(0));
-        assertEquals(secondCardStartBalance + transferAmount, DataHelper.getCardBalance(1));
+        TransferPage tp = new TransferPage();
+        tp.changeSecondCardBalanse(Integer.toString(transferAmount), "5559 0000 0000 0001");
+        assertEquals(firstCardStartBalance - transferAmount, cp.getCardBalance(0));
+        assertEquals(secondCardStartBalance + transferAmount, cp.getCardBalance(1));
     }
 
     @Test
     void shouldTransferMoneyBetweenOwnCardsV7() {
-        int firstCardStartBalance = DataHelper.getCardBalance(0);
-        int secondCardStartBalance = DataHelper.getCardBalance(1);
+        CardsPage cp = new CardsPage();
+        int firstCardStartBalance = cp.getCardBalance(0);
+        int secondCardStartBalance = cp.getCardBalance(1);
+        cp.secondCardUp();
         int transferAmount = 150_000;
-        TransferPage.changeSecondCardBalanse(Integer.toString(transferAmount),"5559 0000 0000 0001");
-        assertEquals(firstCardStartBalance - transferAmount, DataHelper.getCardBalance(0));
-        assertEquals(secondCardStartBalance + transferAmount, DataHelper.getCardBalance(1));
+        TransferPage tp = new TransferPage();
+        tp.changeSecondCardBalanse(Integer.toString(transferAmount),"5559 0000 0000 0001");
+        assertEquals(firstCardStartBalance - transferAmount, cp.getCardBalance(0));
+        assertEquals(secondCardStartBalance + transferAmount, cp.getCardBalance(1));
     }
 }
