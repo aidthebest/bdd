@@ -33,4 +33,14 @@ public class DataHelper {
         return new VerificationCode("12345");
     }
 
+    @Value
+    public static class CardsInfo {
+        private String first;
+        private String second;
+    }
+
+    public static CardsInfo getCardsInfo() {
+        return new CardsInfo("5559 0000 0000 0001", "5559 0000 0000 0002");
+    }
+
 }

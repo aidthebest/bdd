@@ -16,35 +16,10 @@ public class TransferPage {
         heading.shouldBe(visible);
     }
 
-    public CardsPage changeFirstCardBalanse(String amount, String cardsNumber) {
+    public CardsPage changeCardBalanse(String amount, String cardsNumber) {
         amountField.setValue(amount);
         fromCardField.setValue(cardsNumber);
         transferButton.click();
         return new CardsPage();
     }
-
-    public CardsPage changeSecondCardBalanse(String amount, String cardsNumber) {
-        amountField.setValue(amount);
-        fromCardField.setValue(cardsNumber);
-        transferButton.click();
-        return new CardsPage();
-    }
-
-
-
-//    public CardsPage changeFirstCardBalanse(String amount, String cardsNumber) {
-//        $("[data-test-id=\"action-deposit\"]").click();
-//        $("[data-test-id=amount] input").setValue(amount);
-//        $("[data-test-id=from] input").setValue(cardsNumber);
-//        $("[data-test-id=\"action-transfer\"").click();
-//        return new CardsPage();
-//    }
-//
-//    public CardsPage changeSecondCardBalanse(String amount, String cardsNumber) {
-//        $$("[data-test-id=\"action-deposit\"]").get(1).click();
-//        $("[data-test-id=amount] input").setValue(amount);
-//        $("[data-test-id=from] input").setValue(cardsNumber);
-//        $("[data-test-id=\"action-transfer\"]").click();
-//        return new CardsPage();
-//    }
 }
