@@ -7,8 +7,14 @@ import ru.netology.web.page.CardsPage;
 import ru.netology.web.page.LoginPageV1;
 import ru.netology.web.page.TransferPage;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+    import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MoneyTransferTest {
 
@@ -29,7 +35,6 @@ class MoneyTransferTest {
         int secondCardStartBalance = cardsPage.getCardBalance(1);
         TransferPage transferPage = cardsPage.firstCardUp();
         int transferAmount = 394;
-//        TransferPage transferPage = new TransferPage();
         transferPage.changeCardBalanse(Integer.toString(transferAmount), DataHelper.getCardsInfo().getSecond());
         assertEquals(firstCardStartBalance + transferAmount, cardsPage.getCardBalance(0));
         assertEquals(secondCardStartBalance - transferAmount, cardsPage.getCardBalance(1));
@@ -42,7 +47,6 @@ class MoneyTransferTest {
         int secondCardStartBalance = cardsPage.getCardBalance(1);
         TransferPage transferPage = cardsPage.secondCardUp();
         int transferAmount = 748;
-//        TransferPage transferPage = new TransferPage();
         transferPage.changeCardBalanse(Integer.toString(transferAmount), DataHelper.getCardsInfo().getFirst());
         assertEquals(firstCardStartBalance - transferAmount, cardsPage.getCardBalance(0));
         assertEquals(secondCardStartBalance + transferAmount, cardsPage.getCardBalance(1));
@@ -54,10 +58,15 @@ class MoneyTransferTest {
         int firstCardStartBalance = cardsPage.getCardBalance(0);
         int secondCardStartBalance = cardsPage.getCardBalance(1);
         TransferPage transferPage = cardsPage.secondCardUp();
-        int transferAmount = 150_000;
-//        TransferPage transferPage = new TransferPage();
+        int transferAmount = 50_000;
         transferPage.changeCardBalanse(Integer.toString(transferAmount),DataHelper.getCardsInfo().getFirst());
-        assertEquals(firstCardStartBalance - transferAmount, cardsPage.getCardBalance(0));
-        assertEquals(secondCardStartBalance + transferAmount, cardsPage.getCardBalance(1));
+        if ((firstCardStartBalance - transferAmount) < 0) {
+            $(withText("Сумма перевода превышает остаток на карте списания"))
+                    .shouldBe(visible, Duration.ofSeconds(4));
+        }
+        else {
+            assertEquals(firstCardStartBalance - transferAmount, cardsPage.getCardBalance(0));
+            assertEquals(secondCardStartBalance + transferAmount, cardsPage.getCardBalance(1));
+        }
     }
 }
