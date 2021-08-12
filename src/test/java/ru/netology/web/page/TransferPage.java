@@ -1,8 +1,12 @@
 package ru.netology.web.page;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.conditions.Or;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -22,4 +26,13 @@ public class TransferPage {
         transferButton.click();
         return new CardsPage();
     }
-}
+
+    public CardsPage currectCardBalance (int amount) {
+        CardsPage cardsPage = new CardsPage();
+        if (((cardsPage.getCardBalance(0) - amount) < 0) || ((cardsPage.getCardBalance(1)) < 0)) {
+            $(withText("Сумма перевода превышает остаток на карте списания"))
+                    .shouldBe(visible, Duration.ofSeconds(4));
+        }
+        else return new CardsPage();
+        return cardsPage;
+    }}
