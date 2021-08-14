@@ -20,19 +20,14 @@ public class TransferPage {
         heading.shouldBe(visible);
     }
 
-    public CardsPage changeCardBalanse(String amount, String cardsNumber) {
+    public void changeCardBalanse(String amount, String cardsNumber) {
         amountField.setValue(amount);
         fromCardField.setValue(cardsNumber);
         transferButton.click();
-        return new CardsPage();
     }
 
-    public CardsPage currectCardBalance (int amount) {
-        CardsPage cardsPage = new CardsPage();
-        if (((cardsPage.getCardBalance(0) - amount) < 0) || ((cardsPage.getCardBalance(1)) < 0)) {
-            $(withText("Сумма перевода превышает остаток на карте списания"))
-                    .shouldBe(visible, Duration.ofSeconds(4));
-        }
-        else return new CardsPage();
-        return cardsPage;
-    }}
+    public void findErrorMessage() {
+        $(withText("Сумма перевода превышает остаток на карте списания"))
+                .shouldBe(visible, Duration.ofSeconds(4));
+    }
+}

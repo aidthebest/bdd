@@ -59,14 +59,9 @@ class MoneyTransferTest {
         int secondCardStartBalance = cardsPage.getCardBalance(1);
         TransferPage transferPage = cardsPage.secondCardUp();
         int transferAmount = Math.abs(firstCardStartBalance) + 1;
-        transferPage.changeCardBalanse(Integer.toString(transferAmount),DataHelper.getCardsInfo().getFirst());
-        transferPage.currectCardBalance(transferAmount);
-//        if ((firstCardStartBalance - transferAmount) < 0) {
-//            $(withText("Сумма перевода превышает остаток на карте списания"))
-//                    .shouldBe(visible, Duration.ofSeconds(4));
-//        }
-//        else {
-//            assertEquals(firstCardStartBalance - transferAmount, cardsPage.getCardBalance(0));
-//            assertEquals(secondCardStartBalance + transferAmount, cardsPage.getCardBalance(1));
-        }
+        transferPage.changeCardBalanse(Integer.toString(transferAmount), DataHelper.getCardsInfo().getFirst());
+        transferPage.findErrorMessage();
+        assertEquals(firstCardStartBalance, cardsPage.getCardBalance(0));
+        assertEquals(secondCardStartBalance, cardsPage.getCardBalance(1));
+    }
     }
